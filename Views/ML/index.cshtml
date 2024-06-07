@@ -1,0 +1,43 @@
+@{
+    ViewData["Title"] = "Análisis de Sentimientos";
+}
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="my-4">@ViewData["Title"]</h1>
+
+        <form asp-controller="ML" asp-action="Predict" method="post">
+            <div class="form-group">
+                <label for="sentimiento">Escribe tu sentimiento:</label>
+                <input type="text" class="form-control" id="sentimiento" name="sentimiento" />
+            </div>
+            <button type="submit" class="btn btn-primary">Enviar</button>
+        </form>
+
+        @if (ViewData["Sentimiento"] != null)
+        {
+            <div class="mt-4 p-3 bg-light border rounded">
+                <h2>Resultado de la Predicción</h2>
+                <p><strong>Sentimiento Predicho:</strong> @ViewData["Sentimiento"]</p>
+                <p><strong>Sentimiento Score:</strong> @ViewData["Score"]</p>
+                <p><strong>Comentario:</strong> @ViewData["Mensaje"]</p>
+            </div>
+        }
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>
